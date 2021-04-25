@@ -1,4 +1,5 @@
 const { spotifyApi } = require("../app.js");
+require("dotenv").config();
 
 async function routes(fastify, options) {
   fastify.get("/login", async (request, reply) => {
@@ -7,12 +8,10 @@ async function routes(fastify, options) {
         "user-read-email",
         "user-modify-playback-state",
       ],
-      state = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      state = process.env.STATE;
 
-    let authorizeURL = spotifyApi.createAuthorizeURL(scopes, state, true);
-    console.log("Auth url: " + authorizeURL);
+    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state, true);
     reply.redirect(authorizeURL);
-    reply.send(authorizeURL);
   });
 }
 

@@ -12,9 +12,11 @@ fastify.register(require("fastify-static"), {
   prefix: "/",
 });
 
-fastify.register(require("./spotify/pause"));
+// Uri routes
 fastify.register(require("./spotify/login"));
 fastify.register(require("./spotify/callback"));
+fastify.register(require("./spotify/play"));
+fastify.register(require("./spotify/pause"));
 
 // Run the server!
 const start = async () => {
