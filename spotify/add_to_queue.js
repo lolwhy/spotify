@@ -29,8 +29,7 @@ async function routes(fastify, options) {
         // handle error
         console.log(error);
       });
-    console.log(randomSong);
-    reply.send(randomSong).redirect("/");
+    reply.send(randomSong);
   });
 }
 

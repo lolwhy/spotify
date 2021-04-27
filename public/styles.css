@@ -1,3 +1,4 @@
+/* toggle switch */
 .toggle {
     margin:0 0 0 2rem;
     position: relative;
@@ -45,6 +46,7 @@ input:checked + .roundbutton:before  {
     transform: translate(2.6rem, 0);
 }
 
+/* song list */
 #song-list {
     display: flex;
     flex-direction: column;
@@ -63,4 +65,104 @@ input:checked + .roundbutton:before  {
 
 #track-text {
     order: 2;
+    text-align: left;
+    max-width: 15vw;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* layout of the three columns in one row */
+.column {
+float: left;
+width: 33.33%;
+padding: 10px;
+}
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+    a.button1{
+      display:block;
+      margin:0.4em auto;
+    }
+  }
+
+/* bouncy login button */
+  .bouncy{
+    animation:bouncy 5s infinite linear;
+    position:relative;
+  }
+    
+  @keyframes bouncy {
+    0%{top:0em}
+    40%{top:0em}
+    43%{top:-0.9em}
+    46%{top:0em}
+    48%{top:-0.4em}
+    50%{top:0em}
+    100%{top:0em;}
+    }
+
+a.button1{
+display:inline-block;
+padding:0.35em 1.2em;
+border:0.1em solid #1DB954;
+margin:1vw;
+border-radius:0.12em;
+box-sizing: border-box;
+text-decoration:none;
+font-family: Helvetica, sans-serif;
+font-weight:300;
+color:#1DB954;
+text-align:center;
+transition: all 0.2s;
+}
+    
+a.button1:hover{
+color:white;
+background-color:#1DB954;
+}
+
+/* text properties */
+h1 {
+    font-family: Helvetica, sans-serif;
+    font-size:5vw;
+    margin: 1vw;
+}
+
+.introductionTitle {
+    margin-top: 10vh;
+}
+
+p {
+    font-family: 'Source Code Pro', monospace;
+    margin: 1vw;
+    text-align: center;
+}
+
+.introductionParagraph {
+    text-align: left;
+    padding-right: 2vw;
+}
+
+.activeName {
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.8vw;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+li.p {
+    text-align: left;
 }
