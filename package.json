@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
@@ -24,7 +28,7 @@
     "url": "git+https://github.com/lolwhy/spotify.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gioia Best",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lolwhy/spotify/issues"
