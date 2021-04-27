@@ -1,3 +1,5 @@
+"use strict";
+
 const { spotifyApi } = require("../app.js");
 require("dotenv").config();
 

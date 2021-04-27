@@ -1,4 +1,8 @@
 const { spotifyApi } = require("../app.js");
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
+}
 
 async function routes(fastify, options) {
   fastify.get("/callback", options, async function (request, reply) {
@@ -13,6 +17,7 @@ async function routes(fastify, options) {
 
         // Set the access token on the API object to use it in later calls
         spotifyApi.setAccessToken(data.body["access_token"]);
+        localStorage.setItem("access_token", data.body["access_token"]);
         spotifyApi.setRefreshToken(data.body["refresh_token"]);
       },
       function (err) {

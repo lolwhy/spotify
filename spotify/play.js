@@ -1,3 +1,5 @@
+"use strict";
+
 const { spotifyApi } = require("../app.js");
 
 async function routes(fastify, options) {
@@ -11,6 +13,7 @@ async function routes(fastify, options) {
         console.log("Something went wrong!", err);
       }
     );
+    reply.redirect("/");
   });
 }
 

@@ -7,6 +7,7 @@ fastify.register(require("fastify-cors"), {
   origin: "*",
 });
 
+// To server the /public html files (e.g. index.html)
 fastify.register(require("fastify-static"), {
   root: path.join(__dirname, "public"),
   prefix: "/",
@@ -17,6 +18,7 @@ fastify.register(require("./spotify/login"));
 fastify.register(require("./spotify/callback"));
 fastify.register(require("./spotify/play"));
 fastify.register(require("./spotify/pause"));
+fastify.register(require("./spotify/add_to_queue"));
 
 // Run the server!
 const start = async () => {

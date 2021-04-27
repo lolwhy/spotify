@@ -7,12 +7,104 @@
     <title>The HTML5 Herald</title>
     <meta name="description" content="The HTML5 Herald" />
     <meta name="author" content="SitePoint" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <h1>This is an example of the Authorization Code flow</h1>
     <a href="/login" class="btn btn-primary">Login</a>
+    <!-- <button =  -->
+
     <a href="/pause" class="btn btn-primary">Pause</a>
     <a href="/play" class="btn btn-primary">Play</a>
+    <a href="/queue" class="btn btn-primary">Queue</a>
+    <br /><br />
+
+    <label class="toggle">
+      <input id="toggleswitch" type="checkbox" />
+      <span class="roundbutton"></span>
+    </label>
+
+    <ul id="song-list">
+      <li id="track-item">
+        <img
+          id="album-art"
+          src="https://i.scdn.co/image/ab67616d000048517308e091564e56d9c0dcf37c"
+        />
+        <p id="track-text">
+          Паша Жданов,Даша Дерюгина - Perfect Storm - Украшение
+        </p>
+      </li>
+      <li id="track-item">
+        <img
+          id="album-art"
+          src="https://i.scdn.co/image/ab67616d000048516f618496f72442fade3ce27c"
+        />
+        <p id="track-text">Yuhoo - Solisimo</p>
+      </li>
+      <li id="track-item">
+        <img
+          id="album-art"
+          src="https://i.scdn.co/image/ab67616d00004851ce2ba3e9aaf72e6547913cbc"
+        />
+        <p id="track-text">Guvernøren - Silk Road 2017</p>
+      </li>
+    </ul>
+    <script>
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
+      const addListItem = (artistName, trackName, image) => {
+        /**
+         * Append a track to the <ul>, contains:
+         * `artist name - track name` + album art
+         **/
+        let trackList = document.getElementById("song-list");
+
+        let trackElement = document.createElement("li");
+        trackElement.setAttribute("id", "track-item");
+        trackList.appendChild(trackElement);
+
+        let imageElement = document.createElement("img");
+        imageElement.setAttribute("id", "album-art");
+        imageElement.src = image;
+        trackElement.appendChild(imageElement);
+
+        let text = document.createElement("p");
+        text.setAttribute("id", "track-text");
+        text.innerText = artistName + " - " + trackName;
+        trackElement.appendChild(text);
+      };
+
+      let x = false;
+
+      document
+        .getElementById("toggleswitch")
+        .addEventListener("change", function () {
+          if (this.checked) {
+            const song = fetch("/queue")
+              .then((response) => response.json())
+              .then((data) => {
+                addListItem(data.artists, data.track, data.image);
+              });
+            x = true;
+          } else {
+            x = false;
+          }
+        });
+
+      // queue.addEventListener("click")
+      // console.log()
+
+      // var playInterval = getRandomInt(4000, 20000);
+      // console.log("play interval = " + playInterval);
+
+      // setTimeout(function () {
+      //   window.location.href = "/play";
+      // }, playInterval);
+    </script>
   </body>
 </html>
