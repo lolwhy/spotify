@@ -23,7 +23,7 @@ fastify.register(require("./spotify/add_to_queue"));
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(process.env.PORT || 8888, "0.0.0.0");
+    await fastify.listen(process.env.PORT || 8888, process.env.HOST || "::");
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
