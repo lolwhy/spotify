@@ -6,7 +6,7 @@ require("dotenv").config();
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  redirectUri: process.env.CALLBACK_URI,
+  redirectUri: process.env.REDIRECT_URI,
 });
 
 module.exports = { spotifyApi };
