@@ -1,5 +1,5 @@
 {
-  "name": "spotify_randomizer_prototype",
+  "name": "spotify-randomizer-research",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -17,6 +17,7 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
+    "heroku": "^7.52.0",
     "nodemon": "^2.0.7"
   },
   "scripts": {
