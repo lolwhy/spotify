@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Spotify Randomizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="column">
+        <h1 class="introductionTitle">Title</h1>
+        <p class="introductionParagraph">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </div>
+      <div class="column">
+        <img src="name1.png" width="400" />
+        <br /><br />
+        <label class="toggle">
+          <input id="toggleswitch" type="checkbox" />
+          <span class="roundbutton"></span>
+        </label>
+        <p id="activeName" class="activeName">Mario</p>
+        <p>is currently active</p>
+      </div>
+      <div class="column">
+        <p>Random recommendations:</p>
+        <ul id="song-list"></ul>
+      </div>
+    </div>
+
+    <script>
+      // function to generate random intervals for timer
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
+      const addListItem = (artistName, trackName, image) => {
+        /**
+         * Append a track to the <ul>, contains:
+         * `artist name - track name` + album art
+         **/
+        let trackList = document.getElementById('song-list');
+
+        let trackElement = document.createElement('li');
+        trackElement.setAttribute('id', 'track-item');
+        trackList.appendChild(trackElement);
+
+        let imageElement = document.createElement('img');
+        imageElement.setAttribute('id', 'album-art');
+        imageElement.src = image;
+        trackElement.appendChild(imageElement);
+
+        let text = document.createElement('p');
+        text.setAttribute('id', 'track-text');
+        text.innerText = artistName + '\n' + trackName;
+        trackElement.appendChild(text);
+      };
+
+      // var queueInterval = getRandomInt(4000, 5000);
+      // setInterval(() => {
+      //   if (document.getElementById('toggleswitch').checked) {
+      //     fetch('/queue')
+      //       .then((response) => response.json())
+      //       .then((data) => {
+      //         addListItem(data.artists, data.track, data.image);
+      //         queueInterval = getRandomInt(4000, 5000);
+      //         console.log(queueInterval);
+      //       });
+      //   } else {
+      //     return;
+      //   }
+      // }, queueInterval);
+
+      // fetch('/info')
+      //   .then((response) => {
+      //     response.json().then(function (data) {
+      //       console.log('INDEX RESPONSE', data);
+      //     });
+      //   })
+      //   .catch((e) => console.log(e));
+
+      // let playInterval = getRandomInt(4000, 5000);
+
+      // setInterval(async () => {
+      //   fetch('/info')
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       console.log('Request successful', data);
+      //       if (document.getElementById('toggleswitch').checked) {
+      //         console.log('DATA is playing', !data.is_playing && data.is_active);
+      //         async () => {
+      //           if (!data.is_playing && data.is_active) {
+      //             await fetch('/play');
+      //           }
+      //         };
+      //         playInterval = getRandomInt(4000, 5000);
+      //         console.log(playInterval);
+      //       } else {
+      //         return;
+      //       }
+      //       return data;
+      //     })
+      //     .catch((error) => {
+      //       // log('Request failed', error);
+      //     });
+      // }, playInterval);
+
+      // console.log("Playback info: ", playbackInfo);
+      // let playing = playbackInfo.playing;
+
+      document.getElementById('toggleswitch').addEventListener('change', function () {
+        if (this.checked) {
+          document.getElementById('activeName').innerHTML = 'Luigi';
+        } else {
+          document.getElementById('activeName').innerHTML = 'Mario';
+          return false;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,14 +1,13 @@
-"use strict";
-
-const { spotifyApi } = require("../app.js");
+const { spotifyApi } = require('../app.js');
 
 const getRandomSong = () => {
-  return spotifyApi.getPlaylist(process.env.PLAYLIST).then(
-    function (data) {
+  spotifyApi.setAccessToken(localStorage.getItem('access_token'));
+
+  spotifyApi.getPlaylist(process.env.PLAYLIST).then(
+    (data) => {
       const trackItems = data.body.tracks.items;
       // Get a random track from the playlist
-      const track =
-        trackItems[Math.floor(Math.random() * trackItems.length)].track;
+      const { track } = trackItems[Math.floor(Math.random() * trackItems.length)];
       const artistNames = track.artists.map((artist) => artist.name);
 
       return {
@@ -19,9 +18,9 @@ const getRandomSong = () => {
         image: track.album.images[2].url,
       };
     },
-    function (err) {
+    (err) => {
       console.error(err);
-    }
+    },
   );
 };
 

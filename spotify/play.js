@@ -1,17 +1,20 @@
-"use strict";
+const { spotifyApi } = require('../app.js');
 
-const { spotifyApi } = require("../app.js");
+async function routes(fastify) {
+  fastify.get('/play', async () => {
+    spotifyApi.setAccessToken(localStorage.getItem('access_token'));
 
-async function routes(fastify, options) {
-  fastify.get("/play", async (request, reply) => {
     spotifyApi.play().then(
-      function () {
-        console.log("Playback paused");
+      () => {
+        console.log('Playback resumed');
       },
-      function (err) {
-        //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
-        console.log("Something went wrong!", err);
-      }
+      (err) => {
+        // if the user making the request is non-premium,
+        // a 403 FORBIDDEN response code will be returned
+        // console.log('Something went wrong!', err);
+
+        console.log('PLAYING FAILED', localStorage.getItem('access_token'));
+      },
     );
   });
 }
