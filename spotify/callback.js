@@ -22,7 +22,7 @@ async function routes(fastify, options) {
         spotifyApi.setRefreshToken(data.body.refresh_token);
       },
       (err) => {
-        console.log('Something went wrong!', err);
+        console.error(err.response.data.error);
       },
     );
     reply.redirect('/main');

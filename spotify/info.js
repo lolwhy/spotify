@@ -8,7 +8,7 @@ async function routes(fastify) {
         (err) => {
           // if the user making the request is non-premium,
           //  a 403 FORBIDDEN response code will be returned
-          // console.log('Something went wrong!', err);
+          console.error(err.response.data.error);
         },
       );
       console.log('playbackinfo:', await playbackInfo);
