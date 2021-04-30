@@ -20,6 +20,20 @@ async function routes(fastify, options) {
         spotifyApi.setAccessToken(data.body.access_token);
         localStorage.setItem('access_token', data.body.access_token);
         spotifyApi.setRefreshToken(data.body.refresh_token);
+
+        setInterval(() => {
+          spotifyApi.refreshAccessToken().then(
+            (refreshData) => {
+              console.log('The access token has been refreshed!');
+
+              // Save the access token so that it's used in future calls
+              spotifyApi.setAccessToken(refreshData.body.access_token);
+            },
+            (err) => {
+              console.log('Could not refresh access token', err);
+            },
+          );
+        }, 2700000); // refresh every 45min
       },
       (err) => {
         console.error(err.response.data.error);

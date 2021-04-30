@@ -1,3 +1,4 @@
+const { spotifyApi } = require('../app.js');
 const axios = require('axios').default;
 const getRandomSong = require('./random_song.js');
 
@@ -17,13 +18,27 @@ async function routes(fastify) {
           },
         },
       )
-      .then((response) => {
+      .then(() => {
         // handle success
         console.log('Adding track to queue.');
       })
       .catch((err) => {
         // handle error
         console.log(err.response.data.error);
+        spotifyApi.getMyDevices()
+          .then((data) => {
+            const availableDevices = data.body.devices.map((device) => device.id);
+            console.log('AVAIL devices', availableDevices);
+
+            spotifyApi.transferMyPlayback(availableDevices)
+              .then(() => {
+                console.log(`Transfering playback to ${availableDevices}`);
+              }, (errors) => {
+                console.log('Something went wrong!', errors);
+              });
+          }, (error) => {
+            console.log('Something went wrong!', error);
+          });
       });
     console.log('Queueing random song');
     reply.send(randomSong);
