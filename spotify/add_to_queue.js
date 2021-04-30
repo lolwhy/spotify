@@ -3,7 +3,6 @@ const getRandomSong = require('./random_song.js');
 
 async function routes(fastify) {
   fastify.get('/queue', async (request, reply) => {
-    console.log('ACCESS TOKEN QUEUE: ', localStorage.getItem('access_token'));
     const randomSong = await getRandomSong();
     axios
       .post(
@@ -22,10 +21,11 @@ async function routes(fastify) {
         // handle success
         console.log('Adding track to queue.');
       })
-      .catch((error) => {
+      .catch((err) => {
         // handle error
-        console.log(error);
+        console.log(err.response.data.error);
       });
+    console.log('Queueing random song');
     reply.send(randomSong);
   });
 }

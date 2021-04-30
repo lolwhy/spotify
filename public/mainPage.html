@@ -18,29 +18,38 @@
   <body>
     <div class="row">
       <div class="column">
-        <h1 class="introductionTitle">Title</h1>
         <p class="introductionParagraph">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
           sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. E il paragrafo deve arrivare esattamente qui.
         </p>
+        <img id="spotifyTitle" src="spotifyinactive.png" class="spotifyTitle" />
       </div>
       <div class="column">
-        <img src="name1.png" width="400" />
-        <br /><br />
+        <img id="spotifyLogo" src="inactive.png" class="spotifyLogo" />
+        <p id="activeName" class="activeName">Spotify 1.0</p>
+        <br />
         <label class="toggle">
           <input id="toggleswitch" type="checkbox" />
           <span class="roundbutton"></span>
         </label>
-        <p id="activeName" class="activeName">Mario</p>
+        <br />
         <p>is currently active</p>
       </div>
       <div class="column">
-        <p>Random recommendations:</p>
-        <ul id="song-list"></ul>
+        <div class="container">
+          <object class="tabContainer" data="tab.svg"></object>
+          <div class="overlay">
+            <h2 class="newRecommendations">New Song Recommendations</h2>
+            <ul id="song-list"></ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -74,20 +83,18 @@
         trackElement.appendChild(text);
       };
 
-      // var queueInterval = getRandomInt(4000, 5000);
-      // setInterval(() => {
-      //   if (document.getElementById('toggleswitch').checked) {
-      //     fetch('/queue')
-      //       .then((response) => response.json())
-      //       .then((data) => {
-      //         addListItem(data.artists, data.track, data.image);
-      //         queueInterval = getRandomInt(4000, 5000);
-      //         console.log(queueInterval);
-      //       });
-      //   } else {
-      //     return;
-      //   }
-      // }, queueInterval);
+      setInterval(() => {
+        if (document.getElementById('toggleswitch').checked) {
+          fetch('/queue')
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('QUEUEING', data);
+              addListItem(data.artists, data.track, data.image);
+            });
+        } else {
+          return;
+        }
+      }, getRandomInt(8000, 10000));
 
       // fetch('/info')
       //   .then((response) => {
@@ -128,9 +135,13 @@
 
       document.getElementById('toggleswitch').addEventListener('change', function () {
         if (this.checked) {
-          document.getElementById('activeName').innerHTML = 'Luigi';
+          document.getElementById('activeName').innerHTML = 'Spotify 2.0';
+          document.getElementById('spotifyLogo').src = 'active.png';
+          document.getElementById('spotifyTitle').src = 'spotifyactive.png';
         } else {
-          document.getElementById('activeName').innerHTML = 'Mario';
+          document.getElementById('activeName').innerHTML = 'Spotify 1.0';
+          document.getElementById('spotifyLogo').src = 'inactive.png';
+          document.getElementById('spotifyTitle').src = 'spotifyinactive.png';
           return false;
         }
       });

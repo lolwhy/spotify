@@ -12,8 +12,7 @@ async function routes(fastify) {
         // if the user making the request is non-premium,
         // a 403 FORBIDDEN response code will be returned
         // console.log('Something went wrong!', err);
-
-        console.log('PLAYING FAILED', localStorage.getItem('access_token'));
+        console.error(err.response.data.error);
       },
     );
   });

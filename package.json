@@ -30,8 +30,8 @@
     "prettier-eslint": "^12.0.0"
   },
   "scripts": {
-    "start": "node --trace-warnings server.js",
-    "mon": "nodemon --trace-warnings server.js"
+    "start": "node server.js",
+    "monitor": "nodemon server.js"
   },
   "repository": {
     "type": "git",
