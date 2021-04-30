@@ -16,7 +16,6 @@
   </head>
 
   <body>
-    <div class="row">
       <div class="column">
         <p class="introductionParagraph">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -40,8 +39,8 @@
           <span class="roundbutton"></span>
         </label>
         <br />
-        <p>is currently active</p>
-      </div>
+        <p id="note" class="note"></p>
+        </div>
       <div class="column">
         <div class="container">
           <object class="tabContainer" data="tab.svg"></object>
@@ -142,6 +141,7 @@
           document.getElementById('activeName').innerHTML = 'Spotify 1.0';
           document.getElementById('spotifyLogo').src = 'inactive.png';
           document.getElementById('spotifyTitle').src = 'spotifyinactive.png';
+          document.getElementById('note').innerHTML = 'NOTE: the prototype is inactive!';
           return false;
         }
       });
