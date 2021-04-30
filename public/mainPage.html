@@ -87,50 +87,12 @@
           fetch('/queue')
             .then((response) => response.json())
             .then((data) => {
-              console.log('QUEUEING', data);
               addListItem(data.artists, data.track, data.image);
             });
         } else {
           return;
         }
       }, getRandomInt(8000, 10000));
-
-      // fetch('/info')
-      //   .then((response) => {
-      //     response.json().then(function (data) {
-      //       console.log('INDEX RESPONSE', data);
-      //     });
-      //   })
-      //   .catch((e) => console.log(e));
-
-      // let playInterval = getRandomInt(4000, 5000);
-
-      // setInterval(async () => {
-      //   fetch('/info')
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       console.log('Request successful', data);
-      //       if (document.getElementById('toggleswitch').checked) {
-      //         console.log('DATA is playing', !data.is_playing && data.is_active);
-      //         async () => {
-      //           if (!data.is_playing && data.is_active) {
-      //             await fetch('/play');
-      //           }
-      //         };
-      //         playInterval = getRandomInt(4000, 5000);
-      //         console.log(playInterval);
-      //       } else {
-      //         return;
-      //       }
-      //       return data;
-      //     })
-      //     .catch((error) => {
-      //       // log('Request failed', error);
-      //     });
-      // }, playInterval);
-
-      // console.log("Playback info: ", playbackInfo);
-      // let playing = playbackInfo.playing;
 
       document.getElementById('toggleswitch').addEventListener('change', function () {
         if (this.checked) {
