@@ -82,6 +82,29 @@
         trackElement.appendChild(text);
       };
 
+      const getInfoAndPlay = () => {
+        (async () => {
+          await fetch('/info')
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              if (document.getElementById('toggleswitch').checked) {
+                (async () => {
+                  if (!data.is_playing) {
+                    await fetch('/play');
+                  }
+                })();
+              } else {
+                return;
+              }
+              return data;
+            })
+            .catch((error) => {
+              log('Getting info failed: ', error.body);
+            });})()
+      }
+
       setInterval(() => {
         if (document.getElementById('toggleswitch').checked) {
           fetch('/queue')
@@ -89,10 +112,14 @@
             .then((data) => {
               addListItem(data.artists, data.track, data.image);
             });
+
+          getInfoAndPlay();
+
         } else {
           return;
         }
       }, getRandomInt(8000, 10000));
+
 
       document.getElementById('toggleswitch').addEventListener('change', function () {
         if (this.checked) {

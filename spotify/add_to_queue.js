@@ -29,7 +29,7 @@ async function routes(fastify) {
     if (randomSong) {
       if (queueStatus) {
         console.log('queue status:', queueStatus);
-        console.log(`Queueing random song: ${randomSong}`);
+        console.log('Queueing random song: ', randomSong);
         reply.send(randomSong);
       } else {
         transferPlayback(await getDevices());
