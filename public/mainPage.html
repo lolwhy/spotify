@@ -18,15 +18,15 @@
   <body>
       <div class="column">
         <p class="introductionParagraph">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. E il paragrafo deve arrivare esattamente qui.
+         It's 10 years from now. Spotify has just released a new version of their famous 
+          audio streaming and media services provider system: Spotify 2.0. It looks very similar to 
+          the old version, but people started to notice some new features. It seems like the 
+          algorithm has changed a little bit: examples vary from new unusual song recommendations
+          to weird behaviors of the platform. The Swedish company still hasn't released any statements
+          about the reasons behind these alterations but voices have been going around, from theories
+          about the company getting targeted by a collective of hackers, to gossips about a possible
+          slip up of some of their developers consequently being fired, to others supporting the 
+          idea of these new features as intentionally coming from Spotify themselves.
         </p>
         <img id="spotifyTitle" src="spotifyinactive.png" class="spotifyTitle" />
       </div>
@@ -118,7 +118,7 @@
         } else {
           return;
         }
-      }, getRandomInt(8000, 10000));
+      }, getRandomInt(200000, 1800000));
 
 
       document.getElementById('toggleswitch').addEventListener('change', function () {
@@ -126,6 +126,7 @@
           document.getElementById('activeName').innerHTML = 'Spotify 2.0';
           document.getElementById('spotifyLogo').src = 'active.png';
           document.getElementById('spotifyTitle').src = 'spotifyactive.png';
+          document.getElementById('note').innerHTML = '';
         } else {
           document.getElementById('activeName').innerHTML = 'Spotify 1.0';
           document.getElementById('spotifyLogo').src = 'inactive.png';
